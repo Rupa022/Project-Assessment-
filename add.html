@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <header class="header">
+  <div class="header-left">
+    <h3>Acxiom Consulting Pvt Ltd</h3>
+  </div>
+
+  <div class="header-right">
+    <img src="logo.png" alt="Company Logo">
+  </div>
+</header>
+
+<script>
+if(!localStorage.getItem("role")){
+  window.location.href = "login.html";
+}
+</script>
+
+<h2>Add Membership</h2>
+
+<input id="name" placeholder="Name"><br>
+
+<label><input type="radio" name="duration" value="6" checked>6 Months</label>
+<label><input type="radio" name="duration" value="12">1 Year</label>
+<label><input type="radio" name="duration" value="24">2 Years</label>
+
+<br>
+
+<button onclick="save()">Save</button>
+
+<script>
+async function save(){
+  let name = document.getElementById("name").value;
+  let duration = document.querySelector('input[name="duration"]:checked').value;
+
+  await fetch('/addMember',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({id:Date.now(),name,duration})
+  });
+
+  alert("Saved");
+}
+</script>
+
+</body>
+</html>

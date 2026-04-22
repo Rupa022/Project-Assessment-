@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "username": "user",
+      "password": "user123",
+      "role": "user"
+    }
+  ],
+  "members": [
+    {
+      "id": 1776880740868,
+      "name": "Rupa Sahu",
+      "duration": "12"
+    },
+    {
+      "id": 1776880788001,
+      "name": "shreya",
+      "duration": "6"
+    },
+    {
+      "id": 1776880925867,
+      "name": "ash",
+      "duration": "24"
+    }
+  ],
+  "transactions": []
+}

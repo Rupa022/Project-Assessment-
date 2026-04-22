@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <header class="header">
+  <div class="header-left">
+    <h3>Acxiom Consulting Pvt Ltd</h3>
+  </div>
+
+  <div class="header-right">
+    <img src="logo.png" alt="Company Logo">
+  </div>
+</header>
+
+<h2>Transaction</h2>
+<p>
+This section facilitates the recording of membership-related transactions. 
+Users can enter transaction details including member ID and payment amount. 
+All transactions are logged with timestamps for tracking and auditing purposes.
+</p>
+
+
+<input id="id" placeholder="Member ID">
+<input id="amount" placeholder="Amount">
+
+<button onclick="pay()">Pay</button>
+
+<script>
+async function pay(){
+  let id=document.getElementById("id").value;
+  let amount=document.getElementById("amount").value;
+
+  await fetch('/transaction',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({id,amount,date:new Date()})
+  });
+
+  alert("Paid");
+}
+<script>
+if(!localStorage.getItem("role")){
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

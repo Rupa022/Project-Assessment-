@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <header class="header">
+  <div class="header-left">
+    <h3>Acxiom Consulting Pvt Ltd</h3>
+  </div>
+
+  <div class="header-right">
+    <img src="logo.png" alt="Company Logo">
+  </div>
+</header>
+
+<script>
+if(!localStorage.getItem("role")){
+  window.location.href = "login.html";
+}
+
+if(localStorage.getItem("role") !== "admin"){
+  alert("Access Denied");
+  window.location.href = "dashboard.html";
+}
+</script>
+
+<h2>Maintenance</h2>
+<p>
+The Maintenance module enables administrative users to manage core system data. 
+It provides functionality to create new membership records and update existing member details. 
+Access to this module is restricted to authorized personnel only.
+</p>
+<h2>Add Membership</h2>
+<a href="add.html">Add Membership</a><br>
+<p>
+This section allows administrators to register new members into the system. 
+All required details must be provided, including membership duration and status. 
+Ensure that the information entered is accurate before submitting the form.
+</p>
+
+
+<h2>Update Membership</h2>
+<a href="update.html">Update Membership</a>
+
+<p>
+This module is used to modify existing membership records. 
+Enter a valid Membership ID to retrieve and update member information such as name and membership duration. 
+Accurate ID input is required to ensure correct data modification.
+</p>
+
+</body>
+</html>

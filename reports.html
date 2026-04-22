@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <header class="header">
+  <div class="header-left">
+    <h3>Acxiom Consulting Pvt Ltd</h3>
+  </div>
+
+  <div class="header-right">
+    <img src="logo.png" alt="Company Logo">
+  </div>
+</header>
+
+<script>
+if(!localStorage.getItem("role")){
+  window.location.href = "login.html";
+}
+</script>
+
+<h2>Members</h2>
+<div id="data"></div>
+
+<script>
+async function load(){
+  let res = await fetch('/members');
+  let data = await res.json();
+
+  let output = "";
+  data.forEach(m=>{
+    output += `<p>
+ID: ${m.id} | ${m.name} | ${m.duration} months | Active: ${m.active ? "Yes" : "No"}
+</p>`;
+
+  document.getElementById("data").innerHTML = output;
+}
+load();
+</script>
+
+</body>
+</html>

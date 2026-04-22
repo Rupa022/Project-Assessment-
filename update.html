@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <header class="header">
+  <div class="header-left">
+    <h3>Acxiom Consulting Pvt Ltd</h3>
+  </div>
+
+  <div class="header-right">
+    <img src="logo.png" alt="Company Logo">
+  </div>
+</header>
+
+<script>
+if(!localStorage.getItem("role")){
+  window.location.href = "login.html";
+}
+</script>
+
+<h2>Update Membership</h2>
+
+<input id="id" placeholder="ID"><br>
+<input id="name" placeholder="Name"><br>
+
+<label><input type="radio" name="duration" value="6">6</label>
+<label><input type="radio" name="duration" value="12">12</label>
+<label><input type="radio" name="duration" value="24">24</label>
+
+<button onclick="update()">Update</button>
+
+<script>
+async function update(){
+  let id = document.getElementById("id").value;
+  let name = document.getElementById("name").value;
+
+  if(id === ""){
+    alert("Membership ID required");
+    return;
+  }
+
+  if(name === ""){
+    alert("Name required");
+    return;
+  }
+
+  let duration = document.querySelector('input[name="duration"]:checked');
+
+  if(!duration){
+    alert("Select duration");
+    return;
+  }
+
+  await fetch('/updateMember',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      id,
+      name,
+      duration: duration.value
+    })
+  });
+
+  alert("Updated Successfully");
+}
+</script>
+
+</body>
+</html>

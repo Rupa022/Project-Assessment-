@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<script>
+if(!localStorage.getItem("role")){
+  window.location.href = "login.html";
+}
+</script>
+
+<header class="header">
+  <div class="header-left">
+    <h3>Acxiom Consulting Pvt Ltd</h3>
+  </div>
+
+  <div class="header-right">
+    <img src="logo.png" alt="Company Logo">
+  </div>
+</header>
+
+<div class="sidebar">
+  <a href="dashboard.html">Dashboard</a>
+  <a id="adminMenu" href="maintenance.html">Maintenance</a>
+  <a href="transactions.html">Transactions</a>
+  <a href="reports.html">Reports</a>
+</div>
+
+<div class="content">
+  <h2>Welcome</h2>
+</div>
+<p>
+Welcome to the Acxiom Consulting Event Management System. This platform is designed to streamline membership management, transaction processing, and reporting activities. 
+Users can navigate through different modules based on their access roles to perform required operations efficiently.
+</p>
+
+<script>
+if(localStorage.getItem("role") !== "admin"){
+  document.getElementById("adminMenu").style.display = "none";
+}
+</script>
+
+</body>
+</html>

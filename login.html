@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="css/style.css">
+ 
+</head>
+<p>
+Please enter your credentials to access the system. 
+Authentication is role-based and ensures secure access to authorized modules within the application.
+</p>
+<body style="background:#ecf0f1;">
+
+<div style="width:300px;margin:100px auto;background:white;padding:20px;text-align:center;border-radius:10px;">
+  
+  <h3>Acxiom Event Management System</h3>
+  <input id="username" placeholder="Username"><br>
+  <input id="password" type="password" placeholder="Password"><br>
+
+  <button onclick="login()">Login</button>
+  <label>
+  <input type="checkbox" id="active"> Active Membership
+</label>
+
+</div>
+
+<script>
+async function login(){
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+
+  if(username === "" || password === ""){
+    alert("Enter username & password");
+    return;
+  }
+
+  try{
+    let res = await fetch('/login',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({username,password})
+    });
+
+    let data = await res.json();
+
+    console.log("Response:", data); // DEBUG
+
+    if(data.success){
+      localStorage.setItem("role", data.role);
+      window.location.href = "/dashboard.html";
+    } else {
+      alert("Invalid credentials");
+    }
+
+  } catch(e){
+    alert("Server error");
+    console.log(e);
+  }
+}
+</script>
+<script>
+async function save(){
+  let name = document.getElementById("name").value;
+
+  if(name.trim() === ""){
+    alert("Name is required");
+    return;
+  }
+
+  let duration = document.querySelector('input[name="duration"]:checked');
+
+  if(!duration){
+    alert("Select duration");
+    return;
+  }
+
+  let active = document.getElementById("active").checked;
+
+  await fetch('/addMember',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      id: Date.now(),
+      name,
+      duration: duration.value,
+      active
+    })
+  });
+
+  alert("Saved Successfully");
+}
+</script>
+
+</body>
+</html>
